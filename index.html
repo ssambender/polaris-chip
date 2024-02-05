@@ -15,9 +15,65 @@
       padding: 0;
       font-family: sans-serif;
       background-color: #ededed;
+      --background-color: #45555F;
+      --font-color: white;
     }
     polaris-chip {
       margin: 16px;
+    }
+    my-card:nth-child(3n) {
+      --background-color: #fac205;
+      --font-color: rgb(36, 36, 36);
+    }
+    my-card:nth-child(3n + 2) {
+      --background-color: #ea4242;
+      --font-color: white;
+    }
+    
+    .cardContainer {
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    /* https://sambender.net/projects/scrollbar.html */
+    .cardContainer::-webkit-scrollbar {
+      width: 16px;
+    }
+    .cardContainer::-webkit-scrollbar-track {
+        background: #fac230;
+    }
+    .cardContainer::-webkit-scrollbar-track:hover {
+        background: #fac230;
+    }
+    .cardContainer::-webkit-scrollbar-thumb {
+        background-color: #ea4242;
+        border-radius: 20px;
+        border: 3px solid #000000;
+    }
+    .cardContainer::-webkit-scrollbar-thumb:hover {
+        background-color: #f5c100;
+        border: 3px solid #222222;
+    }
+
+    .cardBtn {
+      margin-right: 6px;
+      margin-top: 6px;
+      margin-left: 12px;
+      background: #f5c100;
+      border-radius: 100px;
+      padding: 6px 12px;
+      font-weight: bold;
+      border: solid 2px black;
+      box-sizing: border-box;
+      box-shadow: 4px 4px black;
+      transition: all .3s;
+      color: #000;
+    }
+    .cardBtn:hover {
+      cursor: pointer;
+      background: #000;
+      color: #fff;
+      transition: all .3s;
     }
   </style>
   <title>polaris-chip / my-card</title>
@@ -28,10 +84,26 @@
   <!-- this is going to do whatever the tag's defaults are -->
   <polaris-chip></polaris-chip>
   <!-- this is going to take the tag and change the title -->
-  <polaris-chip title="Cool stuff"></polaris-chip>
+    <polaris-chip link="https://psu.edu" title="News of Record"></polaris-chip>
+    <polaris-chip title="Faculty and Staff"></polaris-chip>
+    <polaris-chip title="Sports"></polaris-chip>
+    <polaris-chip title="Donations"></polaris-chip>
 
+  <!-- Homework -->
   <h1>my-card</h1>
-  <my-card></my-card>
+  <button class="cardBtn" id="duplicate">Duplicate Card</button>
+  <button class="cardBtn" id="changetitle">Change Title</button>
+  <button class="cardBtn" id="changeimage">Change Image 🐕</button>
+  <button class="cardBtn" id="changebg">Toggle Color</button>
+  <button class="cardBtn" id="delete">Delete Last Card</button>
+  
+  <div class="cardContainer">
+    <my-card title="Jonathan Marchessault" img="https://media.lasvegasweekly.com/img/photos/2023/05/31/1MAIN_Fat_Playoff-Marchy_AP-Photo_t1000.jpg?c76bf34eada957f64a0b14990027a576ff9bf379" bodyText="Jonathan Marchessault is a Canadian professional ice hockey forward for the Vegas Golden Knights of the National Hockey League. He has previously played for the Columbus Blue Jackets, Tampa Bay Lightning, and Florida Panthers" btnText="CONNSMYTHE"></my-card>
+    <my-card title="Robin Lehner" bodyText="Got kicked off the team cause he was running an illegal exotic snake farm through Vegas and then was supposed to pay a hitman or something and then had to file for bankruptcy wtf Robin." btnText="Read More" btnLink="https://www.thestar.com/sports/hockey/how-vegas-goalie-robin-lehner-s-snake-farm-purchase-led-to-a-tiger-king-/article_62c94374-01e2-5a81-90f9-af17ded58e71.html"></my-card>
+    <my-card title="Zach Whitecloud" img="https://awfulannouncing.com/wp-content/uploads/sites/94/2023/05/USATSI_19332923-scaled-e1683651090648.jpg" bodyText="Zach Whitecloud is a Canadian professional ice hockey defenceman for the Vegas Golden Knights of the National Hockey League. Whitecloud went undrafted while playing for Bemidji State University. As a college free agent, he signed with the Golden Knights in 2018" btnLink="https://www.nhl.com/goldenknights/player/zach-whitecloud-8480727"></my-card>
+    <my-card title="Marc-Andre Fleury" img="https://www.reviewjournal.com/wp-content/uploads/2019/11/13006953_web1_WEB-Fleurysave-111919.jpg?crop=1" bodyText="Gone but not forgotten :( My favorite player but they did him so dirty." btnText="Past Stats" btnLink="https://www.nhl.com/wild/player/marc-andre-fleury-8470594"></my-card>
+    <my-card title="Ivan Barbashev" img="https://vegashockeynow.com/wp-content/uploads/sites/17/2023/07/Barbashev-Cup.jpg" bodyText="Ivan Dmitrievich Barbashev is a Russian professional ice hockey forward for the Vegas Golden Knights of the National Hockey League. Barbashev was selected by the St. Louis Blues in the second round, 33rd overall, of the 2014 NHL Entry Draft" btnLink="https://www.nhl.com/goldenknights/player/ivan-barbashev-8477964"></my-card>
+  </div>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
