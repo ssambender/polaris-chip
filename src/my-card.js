@@ -19,7 +19,7 @@ export class MyCard extends LitElement {
     this.title = "Player Name";
     this.img = "https://1000logos.net/wp-content/uploads/2018/06/Vegas-Golden-Knights-Logo.png";
     this.bodyText = "Overview text of player, including some heighlights and age and other info.";
-    this.btnText = "Player Stats";
+    this.btnText = "UR TEAM SUCKS";
     this.btnLink = "https://yourteamjustsucks.com/";
   }
 
@@ -40,8 +40,20 @@ export class MyCard extends LitElement {
         border-radius: 6px;
         box-shadow: 8px 8px black;
         border: solid 2px black;
-        font-weight: bold;
         position: relative;
+      }
+
+      :host([fancy]) {
+        color: purple;
+      }
+      :host([fancy]) div {
+        color: purple;
+      }
+
+      :host([fancy]) div {
+        filter: grayscale(1);
+        background-color: #494949;
+        color: #fff;
       }
 
       .change-color {
@@ -92,15 +104,55 @@ export class MyCard extends LitElement {
         color: #fff;
         transition: all .3s;
       }
+
+      :host([fancy]) button {
+        background: gray;
+      }
+
+      details {
+        user-select: none;
+      }
+
+      details[open] summary {
+        font-weight: bold;
+      }
+
+      details > summary {
+          list-style-type: "[ + ]";
+      }
+
+      details[open] > summary {
+        list-style-type: "[ - ]";
+      }
+
+      details summary {
+        font-weight: bold;
+        cursor: pointer;
+      }
     `;
   }
+
+openChanged(e) {
+  console.log(e.newState);
+  if (e.newState === "open") {
+    this.fancy = true;
+  }
+  else {
+    this.fancy = false;
+  }
+}
 
   render() {
     return html`
     <div>
       <h1>${this.title}</h1>
       <img src=${this.img}>
-      <h3>${this.bodyText}</h3>
+      <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+        <summary> ${this.fancy ? "READ LESS" : "READ MORE"} </summary>
+        <slot>
+          ${this.bodyText}
+        </slot>
+      </details>
       <a href=${this.btnLink} target="_blank"><button>${this.btnText}</button></a>
     </div>`;
   }
@@ -112,62 +164,9 @@ export class MyCard extends LitElement {
       bodyText: { type: String },
       btnText: { type: String },
       btnLink: { type: String },
+      fancy: { type: Boolean, reflect: true},
     };
   }
 }
 
 globalThis.customElements.define(MyCard.tag, MyCard);
-
-
-
-
-
-document.querySelector('#duplicate').addEventListener('click', function(event) {
-  const cardList = document.querySelector('.cardContainer');
-  const myCardElements = cardList.querySelectorAll('my-card');
-
-  if (myCardElements.length < 10) {
-    const lastCard = myCardElements[myCardElements.length - 1];
-    const newCard = document.createElement('my-card');
-    
-    // Copy properties from the last card to the new card
-    newCard.title = lastCard.title;
-    newCard.img = lastCard.img;
-    newCard.bodyText = lastCard.bodyText;
-    newCard.btnText = lastCard.btnText;
-    newCard.btnLink = lastCard.btnLink;
-
-    cardList.appendChild(newCard);
-  }
-});
-
-document.querySelector('#changetitle').addEventListener('click', function(e) {
-  const firstCard = document.querySelector('.cardContainer my-card');
-  if (firstCard) {
-    firstCard.title = "Lets Go Knights";
-  }
-});
-
-document.querySelector('#changeimage').addEventListener('click', function(e) {
-  const firstCard = document.querySelector('.cardContainer my-card');
-  if (firstCard) {
-    firstCard.img = "https://pbs.twimg.com/media/EN9qMNEU8AAkht3.jpg";
-  }
-});
-
-document.querySelector('#changebg').addEventListener('click', function(e) {
-  var cards = document.querySelectorAll('.cardContainer my-card');
-  cards.forEach(function(card) {
-    card.shadowRoot.querySelector('div').classList.toggle('change-color');
-  });
-});
-
-
-document.querySelector('#delete').addEventListener('click', function(e) {
-  const cardList = document.querySelector('.cardContainer');
-  const myCardElements = cardList.querySelectorAll('my-card');
-  if (myCardElements.length > 1) {
-    const lastCard = myCardElements[myCardElements.length - 1];
-    lastCard.remove();
-  }
-});
