@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "@lrnwebcomponents/meme-maker/meme-maker.js";
 
 /**
  * Title
@@ -21,6 +22,9 @@ export class MyCard extends LitElement {
     this.bodyText = "Overview text of player, including some heighlights and age and other info.";
     this.btnText = "UR TEAM SUCKS";
     this.btnLink = "https://yourteamjustsucks.com/";
+    this.altText = "No Alt Text";
+    this.memeTop = "Top text";
+    this.memeBottom = "Bottom text";
   }
 
   static get styles() {
@@ -61,7 +65,7 @@ export class MyCard extends LitElement {
         color: #000;
       }
 
-      img {
+      meme-maker {
         width: 100%;
         height: 300px;
         object-fit: cover;
@@ -146,7 +150,7 @@ openChanged(e) {
     return html`
     <div>
       <h1>${this.title}</h1>
-      <img src=${this.img}>
+      <meme-maker alt="${this.altText}" image-url="${this.img}" top-text="${this.memeTop}" bottom-text="${this.memeBottom}"></meme-maker>
       <details ?open="${this.fancy}" @toggle="${this.openChanged}">
         <summary> ${this.fancy ? "READ LESS" : "READ MORE"} </summary>
         <slot>
@@ -165,6 +169,9 @@ openChanged(e) {
       btnText: { type: String },
       btnLink: { type: String },
       fancy: { type: Boolean, reflect: true},
+      altText: { type: String },
+      memeTop: { type: String },
+      memeBottom: { type: String },
     };
   }
 }
