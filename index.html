@@ -75,6 +75,12 @@
       color: #fff;
       transition: all .3s;
     }
+
+    .counterContainer {
+      background-color: rgb(24, 105, 37);
+      padding: 70px 20px;
+      margin-top: 40px;
+    }
   </style>
   <title>polaris-chip / my-card</title>
 </head>
@@ -110,9 +116,32 @@
   
   </div>
 
+
+
+  <div class="counterContainer">
+    <h1 style="margin-top: 0;">counter-app</h1>
+    <li>Numbers next to eachother, below number</li>
+    <li>Color changes when 18 (gold)</li>
+    <li>Color changes when 21 (Blue)</li>
+    <li>Color changes when max/min (Gray)</li>
+    <li>Buttons padded with golden ratio</li>
+    <li>Buttons disabled on max/min</li>
+    <li>Makes it rain on Blackjack (21) $$$</li>
+
+    <counter-app></counter-app>
+    <counter-app counter="16" min="10" max="25"></counter-app>
+    <counter-app counter="2" min="-10" max="30"></counter-app>
+
+  </div>
+
+
+
+
+
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/counter-app.js"></script>
   <script>
     document.querySelector('#duplicate').addEventListener('click', function(event) {
   const cardList = document.querySelector('.cardContainer');
