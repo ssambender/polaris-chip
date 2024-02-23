@@ -18,6 +18,14 @@
       --background-color: #45555F;
       --font-color: white;
     }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    h1 {
+      padding-left: 16px;
+    }
     polaris-chip {
       margin: 16px;
     }
@@ -78,33 +86,45 @@
 
     .counterContainer {
       background-color: rgb(24, 105, 37);
-      padding: 70px 20px;
-      margin-top: 40px;
+      padding-top: 40px;
+    }
+
+    .alertContainer {
+      background-color:  rgb(68, 70, 107);
+    }
+    .alertContainer alert-banner {
+      margin-bottom: 64px;
+    }
+
+    .containerDivider {
+      border-bottom: solid 8px #222222;
     }
   </style>
   <title>polaris-chip / my-card</title>
 </head>
 
 <body>
-  <h1>polaris-chip</h1>
-  <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip></polaris-chip>
-  <!-- this is going to take the tag and change the title -->
-    <polaris-chip link="https://psu.edu" title="News of Record"></polaris-chip>
-    <polaris-chip title="Faculty and Staff"></polaris-chip>
-    <polaris-chip title="Sports"></polaris-chip>
-    <polaris-chip title="Donations"></polaris-chip>
 
-  <!-- Homework -->
+
+  <!-- POALRIS CHIP -->
+  <div style="background-color: lightgray;" class="containerDivider">
+    <h1 style="margin: 0; padding: 16px;">polaris-chip</h1>
+      <polaris-chip></polaris-chip>
+        <polaris-chip link="https://psu.edu" title="News of Record"></polaris-chip>
+        <polaris-chip title="Faculty and Staff"></polaris-chip>
+        <polaris-chip title="Sports"></polaris-chip>
+        <polaris-chip title="Donations"></polaris-chip>
+  </div>
+
+
+  <!-- PLAYER CARDS -->
   <h1>my-card</h1>
   <button class="cardBtn" id="duplicate">Duplicate Card</button>
   <button class="cardBtn" id="changetitle">Change Title</button>
   <button class="cardBtn" id="changeimage">Change Image 🐕</button>
   <button class="cardBtn" id="changebg">Toggle Color</button>
   <button class="cardBtn" id="delete">Delete Last Card</button>
-  
-  <div class="cardContainer">
-
+  <div class="cardContainer containerDivider">
     <my-card title="William Karlson" memeTop="I LOVE" memeBottom="WILD BILL" img="https://images.radio.com/aiu-media/GettyImages1499371040-589789e2-aaa5-45dc-9bdb-deb8b0445a59.jpg?width=800" bodyText="So, this guy. This effing guy. Yeah, I know, I know. So, he was here day one. Yeah. And I know you (the fans) have been here day (expletive) one. You guys are so amazing. We played Arizona in the first game, and we beat the (expletive) out of them. And I had no points. No points.
     “But that’s OK. Because that year one I was pretty (expletive) great. But you guys were greater. And we’ve been up and down on this journey to the Cup.
     “No, no, no, no. Listen to me. We’ve been waiting for six long years for this guy to be M.V.P. Jonathan Marchessault!”" btnText="SPEECH"></my-card>
@@ -113,20 +133,12 @@
     <my-card title="Zach Whitecloud" img="https://awfulannouncing.com/wp-content/uploads/sites/94/2023/05/USATSI_19332923-scaled-e1683651090648.jpg" bodyText="Zach Whitecloud is a Canadian professional ice hockey defenceman for the Vegas Golden Knights of the National Hockey League. Whitecloud went undrafted while playing for Bemidji State University. As a college free agent, he signed with the Golden Knights in 2018" btnLink="https://www.nhl.com/goldenknights/player/zach-whitecloud-8480727"></my-card>
     <my-card title="Marc-Andre Fleury" memeTop="FREE KRISPY KREME" memeBottom="FOR EVERYONE" img="https://www.reviewjournal.com/wp-content/uploads/2019/11/13006953_web1_WEB-Fleurysave-111919.jpg?crop=1" bodyText="Gone but not forgotten :( My favorite player but they did him so dirty." btnText="Past Stats" btnLink="https://www.nhl.com/wild/player/marc-andre-fleury-8470594"></my-card>
     <my-card title="Ivan Barbashev" memeTop="A BARBIE" memeBottom="WORLD" img="https://vegashockeynow.com/wp-content/uploads/sites/17/2023/07/Barbashev-Cup.jpg" bodyText="Ivan Dmitrievich Barbashev is a Russian professional ice hockey forward for the Vegas Golden Knights of the National Hockey League. Barbashev was selected by the St. Louis Blues in the second round, 33rd overall, of the 2014 NHL Entry Draft" btnLink="https://www.nhl.com/goldenknights/player/ivan-barbashev-8477964"></my-card>
-  
   </div>
 
 
-
-  <div class="counterContainer">
+  <!-- COUNTERS -->
+  <div class="counterContainer containerDivider">
     <h1 style="margin-top: 0;">counter-app</h1>
-    <li>Numbers next to eachother, below number</li>
-    <li>Color changes when 18 (gold)</li>
-    <li>Color changes when 21 (Blue)</li>
-    <li>Color changes when max/min (Gray)</li>
-    <li>Buttons padded with golden ratio</li>
-    <li>Buttons disabled on max/min</li>
-    <li>Makes it rain on Blackjack (21) $$$</li>
 
     <counter-app></counter-app>
     <counter-app counter="16" min="10" max="25"></counter-app>
@@ -135,13 +147,30 @@
   </div>
 
 
+  <!-- ALERT BANNERS -->
+  <div class="alertContainer containerDivider">
+    <h1 style="margin-top: 0;">alert-banners</h1>
 
+    <!-- TODO: Should provide support for mobile responsiveness -->
+    <!-- TODO: Stateful support for open and closed status of the alert -->
+    <!--       - Save open/closed status in localStorage -->
+    <alert-banner open sticky urgency="warning" date="February 22, 2023 12:00AM" message="Occaecat laboris incididunt ea labore quis in qui commodo velit cillum et commodo. Dolore consectetur eu eu reprehenderit anim fugiat in nostrud anim magna enim nisi. Mollit est incididunt sint aliqua duis. Deserunt ut velit deserunt fugiat eiusmod. Do incididunt laborum aliqua cupidatat adipisicing fugiat reprehenderit cillum id. Minim minim elit occaecat id velit fugiat ea. Aliqua excepteur ea excepteur cillum esse voluptate non elit laboris laboris esse est sunt incididunt ullamco. <a href='https://www.psu.edu/news' target='_blank'>PENN STATE NEWS</a>" id="element"></alert-banner>
+    <alert-banner open urgency="notice" date="February 22, 2023 12:00AM" message="Goal is to visually match the comp as accurately as possible both in colors and accentuated elements. Copying the CSS will not be very helpful bc of the classes / structure they use but you can learn from them, especially for complex usage of ::before support for 3 different 'states' visually. notice (blue), warning (yellow), alert (red) CSS variables to allow overriding the colors associated with status (text, background color for text, background color for sides / date) Should provide support for mobile re is to visually match the comp as accurately as possible both in colors and accentuated elements. Copying the CSS will not be very helpful bc of the classes / structure they use but you can learn from them, especially for complex usage of ::before support for 3 different 'states' visually. notice (blue), warning (yellow), alert (red) CSS variables to allow overriding the colors associated with status (text, background color for text, background color for sides / date) Should sponsiveness (1st example has b"></alert-banner>
+    <alert-banner open urgency="warning" date="February 22, 2023 12:00AM" ></alert-banner>
+    <alert-banner open urgency="alert" message="No time or date provided with this banner to show the default value of having no time or date :("></alert-banner>
+
+    Alert Banners
+
+  </div>
 
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
   <script type="module" src="./src/counter-app.js"></script>
+  <script type="module" src="./src/alert-banner.js"></script>
+  
+  
   <script>
     document.querySelector('#duplicate').addEventListener('click', function(event) {
   const cardList = document.querySelector('.cardContainer');

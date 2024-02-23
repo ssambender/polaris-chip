@@ -47,22 +47,34 @@ export class PolarisChip extends LitElement {
     */
       :host {
         /* Always make sure that your element has a default way of being displayed */
-        display: inline-flex
+        display: inline-flex;
+        text-decoration: none;
       }
 
       span {
-        background-color: #c1cbd0;
-        color: black;
-        font-size: 24px;
-        padding: 16px;
-        margin: 8px;
-        border: solid 4px #2d2d2d;
+        margin-right: 6px;
+        margin-top: 6px;
+        margin-left: 12px;
+        background: #f5c100;
+        border-radius: 100px;
+        padding: 6px 12px;
         font-weight: bold;
+        border: solid 2px black;
+        box-sizing: border-box;
+        box-shadow: 4px 4px black;
+        transition: all .3s;
+        color: #000;
+        text-decoration: none;
       }
 
       span:hover {
         cursor: pointer;
-        background-color: #7ea5cf;
+        background-color: black;
+        color: white;
+      }
+
+      a {
+        text-decoration: none;
       }
     `;
   }
