@@ -12,7 +12,7 @@ export class AlertBanner extends LitElement {
   constructor() {
     super();
     this.sticky = false;
-    this.open = true;
+    this.opened = true;
     this.urgency = "notice";
     this.message = "SOMETHING IS GOING ON READ THIS FIRST WHILE YOU ARE HERE";
     this.date = "";
@@ -30,6 +30,7 @@ export class AlertBanner extends LitElement {
         --zindex-priority: 900;
         --display-mode: unset;
         --display-mode-opposite: none;
+        overflow: hidden;
       }
       :host([sticky]) {
         position: sticky;
@@ -43,13 +44,17 @@ export class AlertBanner extends LitElement {
       }
       :host([urgency="warning"]) {
         --color-one: #e9af11;
-        --color-two: #FFD133;
+        --color-two: #FAC230;
         --zindex-priority: 902;
       }
       :host([urgency="alert"]) {
-        --color-one: #DB3B21;
-        --color-two: #f07070;
+        --color-one: #c0250d;
+        --color-two: #ff4740;
+        color: white;
         --z-index-priority: 903;
+      }
+      :host([urgency="alert"]) svg {
+        fill: white;
       }
 
       .alertContainer {
@@ -125,6 +130,10 @@ export class AlertBanner extends LitElement {
         color: black;
       } 
 
+      .closeSideText:focus, .openText:focus {
+        color: red;
+      }
+
       .closeSideText:hover, .openText:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -141,6 +150,30 @@ export class AlertBanner extends LitElement {
         align-items: center;
         color: white;
       }
+
+      .openTextContainer button {
+        display: var(--display-mode-opposite);
+      }
+
+      .openTextContainer button, #closeClassText button {
+        background: none;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 1.1rem;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      @media all and (orientation: portrait) {
+        .alertContainer {
+          max-height: 200px;
+        }
+      }
     `;
   }
 
@@ -150,17 +183,22 @@ firstUpdated() {
     // move alerts in the body after the fact so it is more expandable and all tags can be consolidated without having
     // to worry ab position:sticky starting at current spot instead of the top 
     stickyAttributeElemnts.forEach(function(element) {
-        // i hate VSCODE why the indenting so weird. remove any div/element that has sticky attribute
+        // remove any div/element that has sticky attribute
       element.parentNode.removeChild(element);
       
       // insert that on body, putting it at top as position:sticky and not needing to be fixed 
-      // removing firstborn child got me feeling like rumpelstiltskin :O
+      // removing firstborn child - rumpelstiltskin :O
       document.body.insertBefore(element, document.body.firstChild);
     });
 
     const slotElement = this.shadowRoot.querySelector('#messageSlot');
 
     slotElement.innerHTML = this.message;
+
+    if (localStorage.getItem("alertOpen") == "false") {
+      console.log("local storage : false");
+      this.closeBanner();
+    }
 }
 
 
@@ -169,7 +207,7 @@ render() {
     <div class="alertContainer">
         
         <div class="openTextContainer">
-            <span class="openText" tabindex="0" @click="${this.openBanner}">OPEN CAMPUS ALERT!</span>
+            <span class="openText"><button id="openClassText" @click="${this.openBanner}">OPEN CAMPUS ALERT!</button></span>
         </div>
 
         <div class="alertSideText">
@@ -187,32 +225,44 @@ render() {
                 </div>
             </div>
         </div>
-        <div class="alertSideText closeSideText" @click="${this.closeBanner}">
-            ✕ Close
-        </div>
+        <span id="closeClassText" class="alertSideText closeSideText">
+            <button id="closeBannerButton" @click="${this.closeBanner}">✕ Close</button>
+        </span>
     </div>`;
 }
 
 closeBanner() {
-    this.open = false;
+    this.opened = false;
     console.log("closed");
     this.style.setProperty('--display-mode', 'none');
     this.style.setProperty('--min-banner-height', '6vh');
     this.style.setProperty('--display-mode-opposite', 'flex');
 
+    console.log("local storage set to false");
+    localStorage.setItem("alertOpen", "false");
+
+    // get openClassText element.focus()
+    this.shadowRoot.querySelector('#openClassText').focus();
 }
 
 openBanner() {
-    this.open = true;
+    this.opened = true;
+    console.log("opened");
     this.style.setProperty('--display-mode', 'unset');
     this.style.setProperty('--min-banner-height', '20vh');
     this.style.setProperty('--display-mode-opposite', 'none');
+
+    console.log("local storage set to true");
+    localStorage.setItem("alertOpen", "true");
+
+    // get closeClassText element.focus()
+    this.shadowRoot.querySelector('#closeBannerButton').focus();
 }
 
   static get properties() {
     return {
       sticky: { type: Boolean, reflect: true },
-      open: { type: Boolean, reflect: true },
+      opened: { type: Boolean, reflect: true },
       urgency: { type: String, reflect: true },
       message: { type: String },
       date: { type: String },
