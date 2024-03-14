@@ -70,7 +70,7 @@ export class AlertBanner extends LitElement {
         display: var(--display-mode)
       }
 
-      :host .centerDiv:before {
+      :host .centerDiv::before {
         border-bottom: 25px solid var(--color-two);
       } 
       
@@ -192,6 +192,8 @@ firstUpdated() {
     });
 
     const slotElement = this.shadowRoot.querySelector('#messageSlot');
+
+console.log( this.opened.toString() ) 
 
     slotElement.innerHTML = this.message;
 
