@@ -42,7 +42,7 @@ export class haxcmsParty extends LitElement {
         width: 50vw;
         pointer-events: all;
         box-sizing: border-box;
-        padding: 20px;
+        padding: var(--ddd-spacing-5);
         border: var(--ddd-border-sm);
         box-shadow: var(--ddd-boxShadow-sm);
       }
@@ -59,7 +59,7 @@ export class haxcmsParty extends LitElement {
         width: 100%;
         height: 25%;
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: var(--ddd-spacing-5);
       }
 
       #close-partyui {
@@ -103,16 +103,16 @@ export class haxcmsParty extends LitElement {
 
       #usernameInput {
         font-family: inherit;
-        padding: 8px;
+        padding: var(--ddd-spacing-2);
         text-transform: lowercase;
       }
 
       .partyui-user-container {
         color: black;
-        margin-right: 40px;
+        margin-right: var(--ddd-spacing-10);
         display: flex;
         flex-direction: column;
-        padding-bottom: 16px;
+        padding-bottom: var(--ddd-spacing-4);
       }
       .partyui-user-container rpg-character {
         height: 200px;
@@ -121,7 +121,7 @@ export class haxcmsParty extends LitElement {
         align-items: center;
       }
       .partyui-user-container button {
-        margin-top: 8px;
+        margin-top: var(--ddd-spacing-2);
       }
       .partyui-user-container span {
         display: flex;
@@ -135,7 +135,7 @@ export class haxcmsParty extends LitElement {
         margin: 8px 0;
       }
       .searchBarAndBtn input {
-        padding: 4px;
+        padding: var(--ddd-spacing-1);
         height: 100%;
         box-sizing: border-box;
         border: none;
@@ -145,8 +145,8 @@ export class haxcmsParty extends LitElement {
       #addUserButton, #saveUsers {
         background: var(--ddd-theme-default-skyLight);
         border: none;
-        padding: 8px;
-        margin-left: 8px;
+        padding: var(--ddd-spacing-2);
+        margin-left: var(--ddd-spacing-2);
         height: 100%;
         box-sizing: border-box;
         cursor: pointer;
@@ -160,7 +160,7 @@ export class haxcmsParty extends LitElement {
       }
 
       #saveUsers {
-        margin-top: 32px;
+        margin-top: var(--ddd-spacing-8);
       }
       
       .disabledButton {
@@ -170,7 +170,7 @@ export class haxcmsParty extends LitElement {
       }
 
       #usernameInputHint {
-        color: #e40000;
+        color: var(--ddd-theme-default-discoveryCoral);
         font-size: 0.5em;
         visibility: hidden;
       }
@@ -410,10 +410,10 @@ export class partyMember extends LitElement {
 
       .partyui-user-container {
         color: black;
-        margin-right: 40px;
+        margin-right: var(--ddd-spacing-10);
         display: flex;
         flex-direction: column;
-        padding-bottom: 16px;
+        padding-bottom: var(--ddd-spacing-4);
         width: 140px;
         overflow: hidden;
       }
@@ -425,7 +425,7 @@ export class partyMember extends LitElement {
         align-items: center;
       }
       .partyui-user-container button {
-        margin-top: 8px;
+        margin-top: var(--ddd-spacing-2);
       }
       .partyui-user-container span {
         display: flex;
@@ -438,7 +438,7 @@ export class partyMember extends LitElement {
         align-items: center;
       }
       .searchBarAndBtn input {
-        padding: 4px;
+        padding: var(--ddd-spacing-1);
         height: 100%;
         box-sizing: border-box;
         border: none;
@@ -449,10 +449,9 @@ export class partyMember extends LitElement {
         background: var(--ddd-theme-default-skyLight);
         border: none;
         padding: 4px 8px;
-        margin-left: 8px;
+        margin-left: var(--ddd-spacing-2);
         height: 100%;
         box-sizing: border-box;
-        border-radius: 5px;
         cursor: pointer;
         font-weight: bold;
         color: inherit;
